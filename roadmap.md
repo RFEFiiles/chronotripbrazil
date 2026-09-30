@@ -1,4 +1,4 @@
 # Roadmap
 
-- [ ] Usuário escolhe uma das 3 direções de design (vidro temporal / futurista escuro / crônica clara)
-- [ ] Construir o site da agência de viagens no tempo na direção escolhida (frontend apenas, em português)
+- [x] Usuário escolheu a direção "Futurista escuro"
+- [x] Site da agência de viagens no tempo construído (Verso · Agência de Viagem Temporal)

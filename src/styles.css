@@ -4,6 +4,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Paleta da direção "Futurista escuro" — Verso, agência de viagem temporal */
+@theme {
+  --color-ink: #0a0d14;
+  --color-panel: #11151f;
+  --color-panel2: #161b28;
+  --color-line: #23293a;
+  --color-cyan: #4cc9f0;
+  --color-amber: #f4a261;
+  --color-rose: #e07a5f;
+  --color-mint: #7fd1ae;
+  --color-gold: #e8c07d;
+  --color-muted: #93a0b4;
+  --font-display: "Fraunces", serif;
+  --font-sans: "Space Grotesk", sans-serif;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@utility flow {
+  stroke-dasharray: 3 10;
+  animation: dash 2.4s linear infinite;
+}
+
 /*
  * Design system definition.
  *

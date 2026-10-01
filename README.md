@@ -1,7 +1,6 @@
-# Dream Weaver Frontend
+# ChronoTripBrazil
 
-Opa, bom dia, estou fazendo um projeto de programação que consiste em eu criar alguma coisa que eu queria que existisse no mundo, por exemplo, algo pra colonizar marte ou algo assim, mas eu só preciso do Frontend, não precisa fazer o código agora, só quero algumas ideias pra isso, algumas ideias de coisas que não existem no mundo real que possa fazer
-
+Opa, bom dia, estou fazendo um projeto de programação que consiste em eu criar alguma coisa que eu queria que existisse no mundo, e essa aqui é a minha agência de viajem no tempo!
 This project was built with [Lovable](https://lovable.dev).
 
 **Live app**: https://chronotripbrazil.lovable.app

@@ -36,7 +36,7 @@ export function Terra3D() {
 
   return (
     <Canvas
-      camera={{ position: [0, 0.6, 5.2], fov: 45 }}
+      camera={{ position: [0, 0.9, 8.2], fov: 45 }}
       dpr={[1, 2]}
       style={{ background: "transparent" }}
       gl={{ alpha: true, antialias: true }}

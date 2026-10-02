@@ -178,7 +178,10 @@ function Index() {
         <div className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-cyan/10 blur-[120px]" />
         <div className="pointer-events-none absolute -top-10 right-10 h-[380px] w-[380px] rounded-full bg-amber/10 blur-[110px]" />
         {/* Terra 3D interativa atrás do texto */}
-        <div className="absolute inset-y-0 right-0 w-full cursor-grab active:cursor-grabbing lg:w-[58%]" title="Arraste para girar a Terra">
+        <div
+          className="absolute top-0 right-0 h-[480px] w-full cursor-grab opacity-70 active:cursor-grabbing lg:h-[560px] lg:w-[58%] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
+          title="Arraste para girar a Terra"
+        >
           <Terra3D />
         </div>
         <div className="pointer-events-none relative mx-auto max-w-6xl px-6 pt-20 pb-16 lg:px-8 lg:pt-28">

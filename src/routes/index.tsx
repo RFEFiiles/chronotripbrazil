@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FiltroTempo } from "../components/FiltroTempo";
 import { Assistente } from "../components/Assistente";
+import { Terra3D } from "../components/Terra3D";
 
 import dinossauros from "../assets/dinossauros.jpg";
 import egito from "../assets/egito.jpg";
@@ -176,7 +177,14 @@ function Index() {
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-cyan/10 blur-[120px]" />
         <div className="pointer-events-none absolute -top-10 right-10 h-[380px] w-[380px] rounded-full bg-amber/10 blur-[110px]" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 lg:px-8 lg:pt-28">
+        {/* Terra 3D interativa atrás do texto */}
+        <div
+          className="absolute top-0 right-0 h-[480px] w-full cursor-grab opacity-70 active:cursor-grabbing lg:h-[560px] lg:w-[58%] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
+          title="Arraste para girar a Terra"
+        >
+          <Terra3D />
+        </div>
+        <div className="pointer-events-none relative mx-auto max-w-6xl px-6 pt-20 pb-16 lg:px-8 lg:pt-28">
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-muted">
             <span className="size-1.5 rounded-full bg-cyan" /> Temporada 2024 · 09 rotas ativas
           </p>
@@ -192,13 +200,13 @@ function Index() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#catalog"
-              className="inline-flex items-center gap-2 rounded-full bg-cyan py-3 pr-5 pl-4 text-sm font-semibold text-ink ring-1 ring-cyan/60"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-cyan py-3 pr-5 pl-4 text-sm font-semibold text-ink ring-1 ring-cyan/60"
             >
               Explorar expedições <span aria-hidden="true">→</span>
             </a>
             <a
               href="#detail"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium text-white transition-colors hover:border-cyan/60"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium text-white transition-colors hover:border-cyan/60"
             >
               Ver passaporte
             </a>

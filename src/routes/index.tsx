@@ -197,13 +197,13 @@ function Index() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href="#catalog"
-              className="inline-flex items-center gap-2 rounded-full bg-cyan py-3 pr-5 pl-4 text-sm font-semibold text-ink ring-1 ring-cyan/60"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-cyan py-3 pr-5 pl-4 text-sm font-semibold text-ink ring-1 ring-cyan/60"
             >
               Explorar expedições <span aria-hidden="true">→</span>
             </a>
             <a
               href="#detail"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium text-white transition-colors hover:border-cyan/60"
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium text-white transition-colors hover:border-cyan/60"
             >
               Ver passaporte
             </a>

@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { FiltroTempo } from "../components/FiltroTempo";
+import { Assistente } from "../components/Assistente";
 
 import dinossauros from "../assets/dinossauros.jpg";
 import egito from "../assets/egito.jpg";
@@ -164,28 +166,18 @@ function Index() {
             <a href="#detail" className="transition-colors hover:text-white">Passaporte</a>
             <a href="#safety" className="transition-colors hover:text-white">Segurança</a>
           </nav>
+          <div className="flex items-center gap-3">
+          <Link to="/login" className="text-sm text-muted transition-colors hover:text-white">Entrar</Link>
           <a
             href="#detail"
             className="rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink ring-1 ring-cyan/60"
           >
             Reservar agora
           </a>
+          </div>
         </div>
         <div className="border-t border-line/50 bg-panel/60">
-          <div className="mx-auto flex max-w-6xl items-center gap-3 px-6 py-2.5 lg:px-8">
-            <span className="text-[10px] uppercase tracking-[0.22em] text-muted">Linha do tempo</span>
-            <div className="relative h-px flex-1 bg-line">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-cyan via-amber to-rose opacity-70" />
-              {pontosLinhaDoTempo.map((ponto) => (
-                <span
-                  key={ponto.titulo}
-                  title={ponto.titulo}
-                  className={`absolute top-1/2 -translate-y-1/2 rounded-full ${ponto.posicao} ${ponto.cor} ${ponto.brilho} ${ponto.tamanho}`}
-                />
-              ))}
-            </div>
-            <span className="text-[10px] tabular-nums text-muted">−65M → 3000</span>
-          </div>
+          <FiltroTempo />
         </div>
       </header>
 
@@ -410,6 +402,7 @@ function Index() {
           <p>Demonstração estática · conteúdo fictício · sem pagamentos reais</p>
         </div>
       </footer>
+      <Assistente />
     </div>
   );
 }

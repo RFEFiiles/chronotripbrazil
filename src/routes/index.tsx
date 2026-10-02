@@ -134,15 +134,6 @@ const expedicoes = [
   },
 ];
 
-const pontosLinhaDoTempo = [
-  { posicao: "left-0", cor: "bg-mint", brilho: "shadow-[0_0_10px_2px_rgba(127,209,174,0.6)]", tamanho: "size-2.5", titulo: "Pré-Histórico" },
-  { posicao: "left-[18%]", cor: "bg-gold", brilho: "", tamanho: "size-2", titulo: "Antiguidade" },
-  { posicao: "left-[40%]", cor: "bg-amber", brilho: "", tamanho: "size-2", titulo: "Idade Média" },
-  { posicao: "left-[62%]", cor: "bg-rose", brilho: "", tamanho: "size-2", titulo: "Renascença" },
-  { posicao: "left-[84%]", cor: "bg-cyan", brilho: "", tamanho: "size-2", titulo: "Contemporâneo" },
-  { posicao: "right-0", cor: "bg-cyan", brilho: "shadow-[0_0_10px_2px_rgba(76,201,240,0.6)]", tamanho: "size-2.5", titulo: "Ano 3000" },
-];
-
 const barrasCodigo = ["w-1.5", "w-1", "w-2", "w-1", "w-1.5", "w-1", "w-1", "w-2.5", "w-1", "w-1.5", "w-1", "w-2"];
 
 function Index() {

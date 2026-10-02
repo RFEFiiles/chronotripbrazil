@@ -72,7 +72,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-type ErrorComponentType = NonNullable<Parameters<typeof createRootRouteWithContext>[0]>["errorComponent"];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ErrorComponentType = any;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({

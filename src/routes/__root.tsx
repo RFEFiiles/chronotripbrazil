@@ -72,16 +72,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+type ErrorComponentType = NonNullable<Parameters<typeof createRootRouteWithContext>[0]>["errorComponent"];
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Verso · Agência de Viagem Temporal" },
+      { name: "description", content: "Agência fictícia de viagens no tempo." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Verso · Agência de Viagem Temporal" },
+      { property: "og:description", content: "Agência fictícia de viagens no tempo." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -103,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+  errorComponent: ErrorComponent as unknown as ErrorComponentType,
 });
 
 function RootShell({ children }: { children: ReactNode }) {

@@ -1,0 +1,59 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+
+export const Route = createFileRoute("/login")({
+  head: () => ({
+    meta: [
+      { title: "Entrar · Verso Agência de Viagem Temporal" },
+      { name: "description", content: "Acesse sua conta Verso para ver seus passaportes temporais." },
+      { property: "og:title", content: "Entrar · Verso" },
+      { property: "og:description", content: "Acesse sua conta de crononauta." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: Login,
+});
+
+function Login() {
+  const [enviado, setEnviado] = useState(false);
+
+  return (
+    <div className="relative grid min-h-screen place-items-center overflow-hidden bg-ink px-6 font-sans text-white">
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-[480px] w-[760px] -translate-x-1/2 rounded-full bg-cyan/10 blur-[120px]" />
+      <div className="relative w-full max-w-sm rounded-2xl border border-line bg-panel p-8">
+        <Link to="/" className="mb-6 flex items-center gap-2.5">
+          <span className="grid size-8 place-items-center rounded-[10px] bg-gradient-to-br from-cyan to-amber font-display text-lg font-semibold text-ink">V</span>
+          <span className="text-sm font-semibold">Verso</span>
+        </Link>
+        <h1 className="font-display text-3xl font-medium">Bem-vindo, crononauta</h1>
+        <p className="mt-2 text-sm text-muted">Entre para acessar seus passaportes temporais.</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setEnviado(true);
+          }}
+          className="mt-6 space-y-4"
+        >
+          <label className="block text-sm">
+            <span className="text-muted">E-mail</span>
+            <input type="email" required className="mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2.5 outline-none focus:border-cyan" />
+          </label>
+          <label className="block text-sm">
+            <span className="text-muted">Senha</span>
+            <input type="password" required className="mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2.5 outline-none focus:border-cyan" />
+          </label>
+          <button className="w-full rounded-full bg-cyan py-3 text-sm font-semibold text-ink">Entrar</button>
+        </form>
+        {enviado && (
+          <p className="mt-4 rounded-xl bg-amber/15 px-3 py-2 text-sm text-amber">
+            Demonstração: o login ainda não funciona de verdade.
+          </p>
+        )}
+        <p className="mt-6 text-center text-sm text-muted">
+          Não tem conta? <span className="text-cyan">Cadastre-se</span>
+        </p>
+      </div>
+    </div>
+  );
+}

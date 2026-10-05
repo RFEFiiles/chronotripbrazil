@@ -295,7 +295,7 @@ function Index() {
       <section id="detail" className="border-t border-line/50 bg-panel/40">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
           <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-cyan">
-            Passaporte temporal · VRS-0300
+            Passaporte temporal · CTB-0300
           </p>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="aspect-[16/10] w-full overflow-hidden rounded-2xl bg-panel2 outline-1 -outline-offset-1 outline-black/5">
@@ -341,7 +341,7 @@ function Index() {
                     <div key={i} className={`h-12 bg-white/70 ${largura}`} />
                   ))}
                 </div>
-                <p className="text-[10px] text-muted">VRS-0300 · OZ-2024</p>
+                <p className="text-[10px] text-muted">CTB-0300 · OZ-2024</p>
               </div>
               <div className="mt-6 flex items-center justify-between gap-4">
                 <p className="text-sm text-muted">

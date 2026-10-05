@@ -14,13 +14,13 @@ import novaAurora from "../assets/nova-aurora.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Verso · Agência de Viagem Temporal" },
+      { title: "ChronoTripBrazil · Agência de Viagem Temporal" },
       {
         name: "description",
         content:
           "Viaje além do tempo: expedições curadas para o Egito Antigo, a era dos dinossauros e o ano 3000, com passaportes temporais autenticados.",
       },
-      { property: "og:title", content: "Verso · Agência de Viagem Temporal" },
+      { property: "og:title", content: "ChronoTripBrazil · Agência de Viagem Temporal" },
       {
         property: "og:description",
         content:
@@ -147,7 +147,7 @@ function Index() {
             <span className="grid size-8 place-items-center rounded-[10px] bg-gradient-to-br from-cyan to-amber text-ink">
               <span className="font-display text-lg font-semibold">V</span>
             </span>
-            <span className="text-sm font-semibold tracking-wide">Verso</span>
+            <span className="text-sm font-semibold tracking-wide">ChronoTripBrazil</span>
             <span className="hidden text-[11px] uppercase tracking-[0.2em] text-muted sm:inline">
               · Agência de Viagem Temporal
             </span>
@@ -396,7 +396,7 @@ function Index() {
             <span className="grid size-6 place-items-center rounded-lg bg-gradient-to-br from-cyan to-amber text-ink">
               <span className="font-display text-sm font-semibold">V</span>
             </span>
-            Verso · Agência de Viagem Temporal
+            ChronoTripBrazil · Agência de Viagem Temporal
           </p>
           <p>Demonstração estática · conteúdo fictício · sem pagamentos reais</p>
         </div>

@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Paleta da direção "Futurista escuro" — Verso, agência de viagem temporal */
+/* Paleta da direção "Futurista escuro" — ChronoTripBrazil, agência de viagem temporal */
 @theme {
   --color-ink: #0a0d14;
   --color-panel: #11151f;

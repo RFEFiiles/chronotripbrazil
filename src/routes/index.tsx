@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FiltroTempo } from "../components/FiltroTempo";
 import { Assistente } from "../components/Assistente";
@@ -138,6 +139,8 @@ const expedicoes = [
 const barrasCodigo = ["w-1.5", "w-1", "w-2", "w-1", "w-1.5", "w-1", "w-1", "w-2.5", "w-1", "w-1.5", "w-1", "w-2"];
 
 function Index() {
+  const [arrastandoTerra, setArrastandoTerra] = useState(false);
+
   return (
     <div className="min-h-screen bg-ink font-sans text-white antialiased selection:bg-cyan/30">
       {/* Nav + linha do tempo persistente */}

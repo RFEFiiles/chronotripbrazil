@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FiltroTempo } from "../components/FiltroTempo";
 import { Assistente } from "../components/Assistente";
@@ -138,6 +139,8 @@ const expedicoes = [
 const barrasCodigo = ["w-1.5", "w-1", "w-2", "w-1", "w-1.5", "w-1", "w-1", "w-2.5", "w-1", "w-1.5", "w-1", "w-2"];
 
 function Index() {
+  const [arrastandoTerra, setArrastandoTerra] = useState(false);
+
   return (
     <div className="min-h-screen bg-ink font-sans text-white antialiased selection:bg-cyan/30">
       {/* Nav + linha do tempo persistente */}
@@ -179,12 +182,16 @@ function Index() {
         <div className="pointer-events-none absolute -top-10 right-10 h-[380px] w-[380px] rounded-full bg-amber/10 blur-[110px]" />
         {/* Terra 3D interativa atrás do texto */}
         <div
-          className="absolute top-0 right-0 h-[480px] w-full cursor-grab opacity-70 active:cursor-grabbing lg:h-[560px] lg:w-[58%] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
+          className="absolute inset-x-0 top-0 h-[540px] w-full cursor-grab opacity-80 active:cursor-grabbing lg:h-[620px] [mask-image:radial-gradient(ellipse_55%_60%_at_50%_45%,black_40%,transparent_78%)]"
           title="Arraste para girar a Terra"
         >
-          <Terra3D />
+          <Terra3D aoArrastar={setArrastandoTerra} />
         </div>
-        <div className="pointer-events-none relative mx-auto max-w-6xl px-6 pt-20 pb-16 lg:px-8 lg:pt-28">
+        <div
+          className={`pointer-events-none relative mx-auto max-w-6xl px-6 pt-20 pb-16 transition-opacity duration-500 lg:px-8 lg:pt-28 ${
+            arrastandoTerra ? "opacity-30" : "opacity-100"
+          }`}
+        >
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-muted">
             <span className="size-1.5 rounded-full bg-cyan" /> Temporada 2024 · 09 rotas ativas
           </p>

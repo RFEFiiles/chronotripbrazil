@@ -29,14 +29,14 @@ function Terra() {
   );
 }
 
-export function Terra3D() {
+export function Terra3D({ aoArrastar }: { aoArrastar?: (arrastando: boolean) => void }) {
   const [montado, setMontado] = useState(false);
   useEffect(() => setMontado(true), []);
   if (!montado) return null;
 
   return (
     <Canvas
-      camera={{ position: [0, 0.9, 8.2], fov: 45 }}
+      camera={{ position: [0, 0.6, 5.4], fov: 45 }}
       dpr={[1, 2]}
       style={{ background: "transparent" }}
       gl={{ alpha: true, antialias: true }}
@@ -53,6 +53,8 @@ export function Terra3D() {
         autoRotate
         autoRotateSpeed={0.6}
         rotateSpeed={0.5}
+        onStart={() => aoArrastar?.(true)}
+        onEnd={() => aoArrastar?.(false)}
       />
     </Canvas>
   );

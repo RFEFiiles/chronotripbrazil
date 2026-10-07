@@ -66,7 +66,7 @@ function Perfil() {
 
   const salvar = (e: React.FormEvent) => {
     e.preventDefault();
-    salvarPerfil({ email: usuario.email, nome: nome.trim() || usuario.nome, telefone, foto });
+    salvarPerfil({ email: usuario.email, nome: nome.trim() || usuario.nome, telefone, ...(foto ? { foto } : {}) });
     setSalvo(true);
     setTimeout(() => setSalvo(false), 2500);
   };

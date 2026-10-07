@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
-const ANO_ATUAL = new Date().getFullYear();
+export const ANO_ATUAL = new Date().getFullYear();
 
 // Converte a posição do controle (-1000 a 1000) em um ano.
 // Escala "logarítmica": perto do meio anda de 1 em 1 ano, nas pontas pula milhões.
@@ -22,7 +23,7 @@ export function calcularPreco(ano: number) {
   return Math.round(150 + 400 * Math.log10(1 + distancia));
 }
 
-function formatarAno(ano: number) {
+export function formatarAno(ano: number) {
   if (ano < 0) {
     const a = Math.abs(ano);
     if (a >= 1_000_000) return `${(a / 1_000_000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })}M a.C.`;
@@ -69,6 +70,9 @@ export function FiltroTempo() {
         <span className="rounded-full bg-cyan/15 px-2.5 py-1 font-semibold text-cyan">
           {preco === 0 ? "Grátis" : `${preco.toLocaleString("pt-BR")} TC`}
         </span>
+        <Link to="/compra" search={{ ano, destino: "" }} className="rounded-full bg-amber px-3 py-1 font-semibold text-ink">
+          Comprar passagem
+        </Link>
       </div>
     </div>
   );

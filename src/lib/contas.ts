@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const CONTAS = [
   { email: "marty@chrono.com", senha: "1985", nome: "Marty" },
   { email: "lia@chrono.com", senha: "tempo123", nome: "Lia" },
-  { email: "aluno@chrono.com", senha: "escola", nome: "Aluno" },
+  { email: "admin@chrono.com", senha: "escola", nome: "Admin" },
 ];
 
 const CHAVE = "chrono-usuario";

@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FiltroTempo } from "../components/FiltroTempo";
 import { Assistente } from "../components/Assistente";
 import { Terra3D } from "../components/Terra3D";
+import { useUsuario, sair } from "../lib/contas";
 
 import dinossauros from "../assets/dinossauros.jpg";
 import egito from "../assets/egito.jpg";
@@ -46,6 +47,7 @@ const eras = [
 const expedicoes = [
   {
     imagem: dinossauros,
+    ano: -65000000,
     alt: "Selva pré-histórica ao amanhecer com a silhueta de um tiranossauro",
     era: "Pré-Histórico",
     eraClasses: "bg-mint/15 text-mint",
@@ -61,6 +63,7 @@ const expedicoes = [
   },
   {
     imagem: egito,
+    ano: -2500,
     alt: "Pôr do sol sobre o rio Nilo com barcos a vela e pirâmides ao fundo",
     era: "Antiguidade",
     eraClasses: "bg-gold/15 text-gold",
@@ -76,6 +79,7 @@ const expedicoes = [
   },
   {
     imagem: castelo,
+    ano: 1100,
     alt: "Castelo medieval ao entardecer com janelas iluminadas por tochas",
     era: "Idade Média",
     eraClasses: "bg-amber/15 text-amber",
@@ -91,6 +95,7 @@ const expedicoes = [
   },
   {
     imagem: florenca,
+    ano: 1500,
     alt: "Ateliê de pintura renascentista em Florença à luz de velas",
     era: "Renascença",
     eraClasses: "bg-amber/15 text-amber",
@@ -106,6 +111,7 @@ const expedicoes = [
   },
   {
     imagem: litoral2050,
+    ano: 2050,
     alt: "Cidade costeira do futuro com torres de vidro à beira-mar",
     era: "Contemporâneo",
     eraClasses: "bg-cyan/15 text-cyan",
@@ -121,6 +127,7 @@ const expedicoes = [
   },
   {
     imagem: ano3000,
+    ano: 3000,
     alt: "Horizonte do ano 3000 com torres ciano brilhantes sob um céu de nebulosa",
     era: "Ano 3000",
     eraClasses: "bg-cyan/20 text-cyan",
@@ -140,6 +147,7 @@ const barrasCodigo = ["w-1.5", "w-1", "w-2", "w-1", "w-1.5", "w-1", "w-1", "w-2.
 
 function Index() {
   const [arrastandoTerra, setArrastandoTerra] = useState(false);
+  const usuario = useUsuario();
 
   return (
     <div className="min-h-screen bg-ink font-sans text-white antialiased selection:bg-cyan/30">
@@ -162,13 +170,18 @@ function Index() {
             <a href="#safety" className="transition-colors hover:text-white">Segurança</a>
           </nav>
           <div className="flex items-center gap-3">
-          <Link to="/login" className="text-sm text-muted transition-colors hover:text-white">Entrar</Link>
-          <a
-            href="#detail"
+          {usuario ? (
+            <button onClick={sair} className="text-sm text-muted transition-colors hover:text-white">Olá, {usuario.nome} · Sair</button>
+          ) : (
+            <Link to="/login" className="text-sm text-muted transition-colors hover:text-white">Entrar</Link>
+          )}
+          <Link
+            to="/compra"
+            search={{ ano: 3000, destino: "" }}
             className="rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink ring-1 ring-cyan/60"
           >
             Reservar agora
-          </a>
+          </Link>
           </div>
         </div>
         <div className="border-t border-line/50 bg-panel/60">
@@ -262,9 +275,11 @@ function Index() {
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {expedicoes.map((exp) => (
-              <article
+              <Link
+                to="/compra"
+                search={{ ano: exp.ano, destino: exp.titulo }}
                 key={exp.titulo}
-                className={`group rounded-2xl border bg-panel p-3 transition-transform duration-300 hover:-translate-y-1 ${
+                className={`group block rounded-2xl border bg-panel p-3 transition-transform duration-300 hover:-translate-y-1 ${
                   exp.destaque ? "border-cyan/40 ring-1 ring-cyan/20" : "border-line ring-1 ring-black/5"
                 }`}
               >
@@ -292,7 +307,7 @@ function Index() {
                     <span className={`text-sm font-semibold ${exp.precoClasses}`}>{exp.preco}</span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -354,9 +369,9 @@ function Index() {
                 <p className="text-sm text-muted">
                   Total <span className="ml-1 text-2xl font-semibold text-cyan">8.900 TC</span>
                 </p>
-                <button className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink ring-1 ring-cyan/60">
+                <Link to="/compra" search={{ ano: 3000, destino: "Nova Aurora" }} className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink ring-1 ring-cyan/60">
                   Reservar viagem
-                </button>
+                </Link>
               </div>
             </div>
           </div>

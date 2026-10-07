@@ -171,7 +171,13 @@ function Index() {
           </nav>
           <div className="flex items-center gap-3">
           {usuario ? (
-            <button onClick={sair} className="text-sm text-muted transition-colors hover:text-white">Olá, {usuario.nome} · Sair</button>
+            <span className="flex items-center gap-3 text-sm text-muted">
+              <Link to="/perfil" className="flex items-center gap-2 transition-colors hover:text-white">
+                {usuario.foto ? <img src={usuario.foto} alt="" className="h-7 w-7 rounded-full object-cover" /> : null}
+                Olá, {usuario.nome}
+              </Link>
+              <button onClick={sair} className="transition-colors hover:text-white">Sair</button>
+            </span>
           ) : (
             <Link to="/login" className="text-sm text-muted transition-colors hover:text-white">Entrar</Link>
           )}

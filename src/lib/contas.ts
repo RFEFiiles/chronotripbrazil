@@ -62,11 +62,7 @@ export function useUsuario() {
     window.addEventListener("chrono-perfil", ler);
     return () => { ativo = false; sub.subscription.unsubscribe(); window.removeEventListener("chrono-perfil", ler); };
   }, []);
-  return Object.assign(usuario ?? {}, {}) && usuario ? { ...usuario, carregando } : null;
-}
-
-export function useCarregandoUsuario() {
-  return useUsuario();
+  return { usuario, carregando };
 }
 
 export type Compra = { codigo: string; destino: string; ano: number; passageiros: number; classe: string; total: number; criado_em: string };

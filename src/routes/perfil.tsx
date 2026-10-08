@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { salvarPerfil, useUsuario } from "../lib/contas";
+import { salvarPerfil, useUsuario, listarCompras, type Compra } from "../lib/contas";
+import { formatarAno } from "../components/FiltroTempo";
 
 export const Route = createFileRoute("/perfil")({
   head: () => ({
@@ -24,7 +25,9 @@ function formatarTelefone(v: string) {
 }
 
 function Perfil() {
-  const usuario = useUsuario();
+  const { usuario, carregando } = useUsuario();
+  const [compras, setCompras] = useState<Compra[]>([]);
+  const [erroSalvar, setErroSalvar] = useState("");
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [foto, setFoto] = useState<string | undefined>();
@@ -37,6 +40,12 @@ function Perfil() {
       setFoto(usuario.foto);
     }
   }, [usuario?.email]);
+
+  useEffect(() => {
+    if (usuario) listarCompras().then(setCompras);
+  }, [usuario?.id]);
+
+  if (carregando) return <main className="min-h-screen bg-ink" />;
 
   if (!usuario) {
     return (
@@ -64,9 +73,11 @@ function Perfil() {
     img.src = URL.createObjectURL(arquivo);
   };
 
-  const salvar = (e: React.FormEvent) => {
+  const salvar = async (e: React.FormEvent) => {
     e.preventDefault();
-    salvarPerfil({ email: usuario.email, nome: nome.trim() || usuario.nome, telefone, ...(foto ? { foto } : {}) });
+    const falha = await salvarPerfil({ nome: nome.trim() || usuario.nome, telefone, foto: foto ?? null });
+    setErroSalvar(falha ?? "");
+    if (falha) return;
     setSalvo(true);
     setTimeout(() => setSalvo(false), 2500);
   };
@@ -106,7 +117,28 @@ function Perfil() {
 
           <button className="w-full rounded-full bg-cyan py-3 font-semibold text-ink hover:opacity-90">Salvar alterações</button>
           {salvo && <p className="text-center text-sm text-mint">Perfil salvo! ✓</p>}
+          {erroSalvar && <p className="text-center text-sm text-rose">{erroSalvar}</p>}
         </form>
+
+        <h2 className="mt-10 font-display text-2xl">Minhas viagens</h2>
+        {compras.length === 0 ? (
+          <p className="mt-3 text-sm text-muted">Nenhuma passagem comprada ainda.</p>
+        ) : (
+          <ul className="mt-4 space-y-3">
+            {compras.map((c) => (
+              <li key={c.codigo} className="flex items-center justify-between rounded-xl border border-line bg-panel p-4 text-sm">
+                <div>
+                  <p className="font-semibold">{c.destino}</p>
+                  <p className="text-muted">{formatarAno(c.ano)} · {c.passageiros} passageiro(s) · {c.classe === "premium" ? "Premium" : "Econômica"}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-cyan">{c.codigo}</p>
+                  <p className="text-muted">{c.total.toLocaleString("pt-BR")} TC</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </main>
   );

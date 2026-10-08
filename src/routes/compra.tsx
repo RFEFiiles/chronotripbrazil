@@ -3,7 +3,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { useState } from "react";
 import { calcularPreco, formatarAno, ANO_ATUAL } from "../components/FiltroTempo";
-import { useUsuario, sair } from "../lib/contas";
+import { useUsuario, sair, registrarCompra } from "../lib/contas";
 
 const busca = z.object({
   ano: fallback(z.number(), ANO_ATUAL - 2).default(ANO_ATUAL - 2),
@@ -27,7 +27,9 @@ export const Route = createFileRoute("/compra")({
 
 function Compra() {
   const { ano: anoInicial, destino } = Route.useSearch();
-  const usuario = useUsuario();
+  const { usuario } = useUsuario();
+  const [enviando, setEnviando] = useState(false);
+  const [erro, setErro] = useState("");
   const [ano, setAno] = useState(Math.round(anoInicial));
   const [passageiros, setPassageiros] = useState(1);
   const [classe, setClasse] = useState<"eco" | "premium">("eco");
@@ -88,11 +90,20 @@ function Compra() {
             <div className="flex items-center justify-between border-t border-dashed border-line pt-5">
               <p className="text-sm text-muted">Total <span className="ml-1 text-3xl font-semibold text-cyan">{total.toLocaleString("pt-BR")} TC</span></p>
               {usuario ? (
-                <button
-                  onClick={() => setCodigo(`CTB-${Math.floor(1000 + Math.random() * 9000)}`)}
-                  className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink">
-                  Confirmar compra
-                </button>
+                <div className="text-right">
+                  <button
+                    disabled={enviando}
+                    onClick={async () => {
+                      setEnviando(true); setErro("");
+                      const r = await registrarCompra({ destino: destino || "Viagem personalizada", ano, passageiros, classe, total });
+                      setEnviando(false);
+                      if (r.codigo) setCodigo(r.codigo); else setErro(r.erro ?? "Erro");
+                    }}
+                    className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink disabled:opacity-60">
+                    {enviando ? "Processando..." : "Confirmar compra"}
+                  </button>
+                  {erro && <p className="mt-2 text-xs text-rose">{erro}</p>}
+                </div>
               ) : (
                 <Link to="/login" className="rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink">
                   Entre para comprar

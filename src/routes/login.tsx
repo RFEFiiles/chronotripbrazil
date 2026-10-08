@@ -34,7 +34,7 @@ function Login() {
       setEnviando(false);
       if (falha) setErro(falha); else navigate({ to: "/" });
     } else {
-      const r = await cadastrar(nome.trim() || email.split("@")[0] ?? "", email, senha);
+      const r = await cadastrar(nome.trim() || (email.split("@")[0] ?? ""), email, senha);
       setEnviando(false);
       if (r.erro) setErro(r.erro);
       else if (r.precisaConfirmar) { setAviso("Conta criada! Abra o link que enviamos pro seu e-mail e depois entre."); setModo("entrar"); }

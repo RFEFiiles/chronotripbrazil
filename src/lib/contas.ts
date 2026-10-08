@@ -19,7 +19,7 @@ async function carregarUsuario(): Promise<Usuario | null> {
 
 export async function entrar(email: string, senha: string): Promise<string | null> {
   const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password: senha });
-  if (error) return error.message === "Email not confirmed" ? "Confirme seu e-mail antes de entrar." : "E-mail ou senha incorretos.";
+  if (error) return "E-mail ou senha incorretos.";
   return null;
 }
 

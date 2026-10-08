@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export type Usuario = { id: string; email: string; nome: string; foto?: string; telefone?: string };
+export type Usuario = { id: string; email: string; nome: string; foto?: string | undefined; telefone?: string | undefined };
 
 async function carregarUsuario(): Promise<Usuario | null> {
   const { data } = await supabase.auth.getSession();

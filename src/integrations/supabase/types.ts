@@ -14,7 +14,74 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      compras: {
+        Row: {
+          ano: number
+          classe: string
+          codigo: string
+          criado_em: string
+          destino: string
+          id: string
+          passageiros: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          ano: number
+          classe: string
+          codigo: string
+          criado_em?: string
+          destino?: string
+          id?: string
+          passageiros: number
+          total: number
+          user_id: string
+        }
+        Update: {
+          ano?: number
+          classe?: string
+          codigo?: string
+          criado_em?: string
+          destino?: string
+          id?: string
+          passageiros?: number
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "compras_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          criado_em: string
+          foto: string | null
+          id: string
+          nome: string
+          telefone: string | null
+        }
+        Insert: {
+          criado_em?: string
+          foto?: string | null
+          id: string
+          nome?: string
+          telefone?: string | null
+        }
+        Update: {
+          criado_em?: string
+          foto?: string | null
+          id?: string
+          nome?: string
+          telefone?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

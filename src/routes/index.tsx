@@ -147,7 +147,7 @@ const barrasCodigo = ["w-1.5", "w-1", "w-2", "w-1", "w-1.5", "w-1", "w-1", "w-2.
 
 function Index() {
   const [arrastandoTerra, setArrastandoTerra] = useState(false);
-  const usuario = useUsuario();
+  const { usuario } = useUsuario();
 
   return (
     <div className="min-h-screen bg-ink font-sans text-white antialiased selection:bg-cyan/30">

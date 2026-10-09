@@ -82,6 +82,7 @@ function Login() {
         >
           {modo === "entrar" ? "Não tem conta? Criar conta" : "Já tem conta? Entrar"}
         </button>
+        <Link to="/equipe/login" className="mt-3 block text-center text-xs text-muted hover:text-amber">Sou funcionário</Link>
       </div>
     </div>
   );

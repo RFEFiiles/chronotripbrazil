@@ -20,7 +20,7 @@ const Entrada = z.object({
 export const perguntarLia = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => Entrada.parse(d))
   .handler(async ({ data }) => {
-    const chave = process.env.LOVABLE_API_KEY;
+    const chave = process.env["LOVABLE_API_KEY"];
     if (!chave) return { texto: "", erro: "Assistente sem configuração no momento." };
 
     const resp = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {

@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompraRouteImport } from './routes/compra'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as EquipeIndexRouteImport } from './routes/equipe.index'
+import { Route as EquipeLoginRouteImport } from './routes/equipe.login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +36,32 @@ const PerfilRoute = PerfilRouteImport.update({
   path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipeIndexRoute = EquipeIndexRouteImport.update({
+  id: '/equipe/',
+  path: '/equipe/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipeLoginRoute = EquipeLoginRouteImport.update({
+  id: '/equipe/login',
+  path: '/equipe/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/compra': typeof CompraRoute
   '/login': typeof LoginRoute
   '/perfil': typeof PerfilRoute
+  '/equipe/login': typeof EquipeLoginRoute
+  '/equipe/': typeof EquipeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/compra': typeof CompraRoute
   '/login': typeof LoginRoute
   '/perfil': typeof PerfilRoute
+  '/equipe/login': typeof EquipeLoginRoute
+  '/equipe': typeof EquipeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +69,23 @@ export interface FileRoutesById {
   '/compra': typeof CompraRoute
   '/login': typeof LoginRoute
   '/perfil': typeof PerfilRoute
+  '/equipe/login': typeof EquipeLoginRoute
+  '/equipe/': typeof EquipeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/compra' | '/login' | '/perfil'
+  fullPaths:
+    '/' | '/compra' | '/login' | '/perfil' | '/equipe/login' | '/equipe/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/compra' | '/login' | '/perfil'
-  id: '__root__' | '/' | '/compra' | '/login' | '/perfil'
+  to: '/' | '/compra' | '/login' | '/perfil' | '/equipe/login' | '/equipe'
+  id:
+    | '__root__'
+    | '/'
+    | '/compra'
+    | '/login'
+    | '/perfil'
+    | '/equipe/login'
+    | '/equipe/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +93,8 @@ export interface RootRouteChildren {
   CompraRoute: typeof CompraRoute
   LoginRoute: typeof LoginRoute
   PerfilRoute: typeof PerfilRoute
+  EquipeLoginRoute: typeof EquipeLoginRoute
+  EquipeIndexRoute: typeof EquipeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +127,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/equipe/': {
+      id: '/equipe/'
+      path: '/equipe'
+      fullPath: '/equipe/'
+      preLoaderRoute: typeof EquipeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipe/login': {
+      id: '/equipe/login'
+      path: '/equipe/login'
+      fullPath: '/equipe/login'
+      preLoaderRoute: typeof EquipeLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +149,8 @@ const rootRouteChildren: RootRouteChildren = {
   CompraRoute: CompraRoute,
   LoginRoute: LoginRoute,
   PerfilRoute: PerfilRoute,
+  EquipeLoginRoute: EquipeLoginRoute,
+  EquipeIndexRoute: EquipeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

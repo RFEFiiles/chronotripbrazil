@@ -83,3 +83,25 @@ export async function listarCompras(): Promise<Compra[]> {
     .order("criado_em", { ascending: false });
   return (data ?? []) as Compra[];
 }
+
+export async function ehFuncionario(): Promise<boolean> {
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) return false;
+  const { data: r } = await supabase.from("user_roles").select("role").eq("user_id", data.user.id).eq("role", "funcionario").maybeSingle();
+  return !!r;
+}
+
+export type CompraEquipe = Compra & { id: string; user_id: string };
+
+export async function listarTodasCompras(): Promise<{ compras: CompraEquipe[]; nomes: Record<string, string> }> {
+  const { data } = await supabase.from("compras").select("id, user_id, codigo, destino, ano, passageiros, classe, total, criado_em").order("criado_em", { ascending: false });
+  const { data: perfis } = await supabase.from("profiles").select("id, nome");
+  const nomes: Record<string, string> = {};
+  (perfis ?? []).forEach((p) => { nomes[p.id] = p.nome; });
+  return { compras: (data ?? []) as CompraEquipe[], nomes };
+}
+
+export async function cancelarCompra(id: string) {
+  const { error } = await supabase.from("compras").delete().eq("id", id);
+  return error ? "Não foi possível cancelar." : null;
+}

@@ -1,22 +1,7 @@
 import { useState } from "react";
+import { perguntarLia } from "@/lib/lia.functions";
 
 type Mensagem = { autor: "lia" | "voce"; texto: string };
-
-// Respostas prontas: a assistente procura palavras-chave na pergunta.
-function responder(pergunta: string): string {
-  const p = pergunta.toLowerCase();
-  if (p.includes("preço") || p.includes("preco") || p.includes("caro") || p.includes("custa"))
-    return "O preço depende da distância no tempo: quanto mais perto do presente, mais barato. Use o controle 'Escolha o momento' no topo pra ver o valor!";
-  if (p.includes("dinossauro")) return "O Vale dos Dinossauros dura 7 dias e custa 4.200 TC. Fique sempre dentro da cápsula de observação! 🦖";
-  if (p.includes("egito")) return "O Egito Antigo (2500 a.C.) dura 5 dias por 3.600 TC. Leve protetor solar!";
-  if (p.includes("futuro") || p.includes("3000")) return "Nova Aurora, no ano 3000, é nossa rota mais procurada: 10 dias por 8.900 TC.";
-  if (p.includes("seguro") || p.includes("paradoxo") || p.includes("perigo"))
-    return "Toda viagem é monitorada 24/7. Qualquer alteração no passado é revertida em até 90 segundos.";
-  if (p.includes("login") || p.includes("conta") || p.includes("entrar"))
-    return "Você pode entrar na sua conta clicando em 'Entrar' no topo da página.";
-  if (p.includes("oi") || p.includes("olá") || p.includes("ola")) return "Oi! Pra quando você quer viajar? ⏳";
-  return "Hmm, não sei responder isso ainda. Pergunte sobre preços, destinos (dinossauros, Egito, futuro) ou segurança!";
-}
 
 export function Assistente() {
   const [aberto, setAberto] = useState(false);
@@ -25,12 +10,24 @@ export function Assistente() {
     { autor: "lia", texto: "Olá! Eu sou a Lia, sua crononauta virtual. Como posso ajudar na sua viagem?" },
   ]);
 
-  function enviar(e: React.FormEvent) {
+  const [pensando, setPensando] = useState(false);
+
+  async function enviar(e: React.FormEvent) {
     e.preventDefault();
     const pergunta = texto.trim();
-    if (!pergunta) return;
-    setMensagens((m) => [...m, { autor: "voce", texto: pergunta }, { autor: "lia", texto: responder(pergunta) }]);
+    if (!pergunta || pensando) return;
+    const nova = [...mensagens, { autor: "voce" as const, texto: pergunta }];
+    setMensagens(nova);
     setTexto("");
+    setPensando(true);
+    try {
+      const r = await perguntarLia({ data: { mensagens: nova } });
+      setMensagens((m) => [...m, { autor: "lia", texto: r.erro ?? r.texto }]);
+    } catch {
+      setMensagens((m) => [...m, { autor: "lia", texto: "Ops, perdi a conexão com o tempo. Tente de novo!" }]);
+    } finally {
+      setPensando(false);
+    }
   }
 
   return (
@@ -55,6 +52,7 @@ export function Assistente() {
                 {m.texto}
               </p>
             ))}
+            {pensando && <p className="w-fit rounded-2xl bg-panel2 px-3 py-2 text-sm text-muted">Lia está digitando...</p>}
           </div>
           <form onSubmit={enviar} className="flex gap-2 border-t border-line p-3">
             <input
@@ -64,7 +62,7 @@ export function Assistente() {
               className="flex-1 rounded-full border border-line bg-ink px-3 py-2 text-sm outline-none focus:border-cyan"
               autoFocus
             />
-            <button className="rounded-full bg-cyan px-4 text-sm font-semibold text-ink">Enviar</button>
+            <button disabled={pensando} className="rounded-full disabled:opacity-50 bg-cyan px-4 text-sm font-semibold text-ink">Enviar</button>
           </form>
         </div>
       )}

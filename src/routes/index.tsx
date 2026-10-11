@@ -164,7 +164,7 @@ function Index() {
               · Agência de Viagem Temporal
             </span>
           </Link>
-          <nav className="order-3 col-span-2 flex min-w-0 items-center gap-6 overflow-x-auto py-1 text-sm text-muted md:order-none md:gap-8">
+          <nav className="order-3 col-span-2 grid min-w-0 grid-cols-2 gap-x-4 gap-y-1 py-1 text-sm text-muted sm:flex sm:gap-6 md:order-none md:gap-8">
             <a href="#eras" className="transition-colors hover:text-white">Eras</a>
             <a href="#catalog" className="transition-colors hover:text-white">Expedições</a>
             <a href="#detail" className="transition-colors hover:text-white">Passaporte</a>

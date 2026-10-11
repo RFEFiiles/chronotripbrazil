@@ -7,6 +7,7 @@
 /* Paleta da direção "Futurista escuro" — ChronoTripBrazil, agência de viagem temporal */
 @theme {
   --color-ink: #0a0d14;
+  --color-readable: #f5f7fa;
   --color-panel: #11151f;
   --color-panel2: #161b28;
   --color-line: #23293a;

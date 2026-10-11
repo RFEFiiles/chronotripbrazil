@@ -65,7 +65,7 @@ export function FiltroTempo() {
         />
       </div>
       <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 text-xs tabular-nums sm:flex sm:flex-wrap sm:gap-3">
-        <span className="min-w-0 font-semibold text-foreground">{formatarAno(ano)}</span>
+        <span className="min-w-0 font-semibold text-readable">{formatarAno(ano)}</span>
         <span className="col-start-1 row-start-2 min-w-0 text-muted">{descreverDistancia(ano)}</span>
         <span className="col-start-2 row-start-1 rounded-full bg-cyan/15 px-2.5 py-1 font-semibold text-cyan">
           {preco === 0 ? "Grátis" : `${preco.toLocaleString("pt-BR")} TC`}

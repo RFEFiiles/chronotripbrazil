@@ -49,7 +49,7 @@ export function Assistente() {
               <p
                 key={i}
                 className={`max-w-[85%] break-words rounded-2xl px-3 py-2 text-sm ${
-                  m.autor === "voce" ? "ml-auto bg-cyan text-ink" : "bg-panel2 text-foreground"
+                  m.autor === "voce" ? "ml-auto bg-cyan text-ink" : "bg-panel2 text-readable"
                 }`}
               >
                 {m.texto}

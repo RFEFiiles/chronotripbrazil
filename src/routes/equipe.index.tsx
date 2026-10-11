@@ -59,58 +59,58 @@ function PainelEquipe() {
   const sairEquipe = async () => { await sair(); navigate({ to: "/equipe/login", replace: true }); };
 
   return (
-    <main className="min-h-screen bg-ink px-6 py-12 text-white">
+    <main className="min-h-screen bg-ink px-4 py-6 sm:px-6 sm:py-12 text-white">
       <div className="mx-auto max-w-5xl">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-sm text-muted hover:text-white">← Site</Link>
+          <Link to="/" className="inline-flex min-h-11 items-center text-sm text-muted hover:text-white">Ir ao site</Link>
           <button onClick={sairEquipe} className="text-sm text-muted hover:text-rose">Sair</button>
         </div>
 
-        <section className="mt-6 flex items-center gap-5 rounded-2xl border border-amber/40 bg-panel p-6">
-          <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full border border-amber bg-panel2 text-3xl text-amber">
+        <section className="mt-6 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-5 rounded-2xl border border-amber/40 bg-panel p-4 sm:p-6">
+          <div className="flex h-16 w-16 shrink-0 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-full border border-amber bg-panel2 text-3xl text-amber">
             {usuario?.foto ? <img src={usuario.foto} alt="Foto" className="h-full w-full object-cover" /> : usuario?.nome.charAt(0).toUpperCase()}
           </div>
-          <div className="flex-1">
+          <div className="min-w-0">
             <span className="rounded-full bg-amber/15 px-3 py-1 text-xs font-semibold text-amber">FUNCIONÁRIO</span>
-            <h1 className="mt-2 font-display text-3xl">{usuario?.nome}</h1>
-            <p className="text-sm text-muted">{usuario?.email}</p>
+            <h1 className="mt-2 break-words font-display text-2xl sm:text-3xl">{usuario?.nome}</h1>
+            <p className="break-all text-sm text-muted">{usuario?.email}</p>
           </div>
-          <Link to="/perfil" className="rounded-full border border-amber px-4 py-2 text-sm text-amber hover:bg-amber hover:text-ink">Editar perfil</Link>
+          <Link to="/perfil" className="col-span-2 inline-flex min-h-11 items-center justify-center rounded-full border border-amber px-4 py-2 sm:col-span-1 text-sm text-amber hover:bg-amber hover:text-ink">Editar perfil</Link>
         </section>
 
-        <section className="mt-6 grid gap-4 sm:grid-cols-4">
+        <section className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {[
             ["Passagens vendidas", compras.length],
             ["Faturamento", `${faturamento.toLocaleString("pt-BR")} TC`],
             ["Passageiros", passageiros],
             ["Clientes", clientes],
           ].map(([t, v]) => (
-            <div key={t} className="rounded-2xl border border-line bg-panel p-5">
+            <div key={t} className="rounded-2xl border border-line min-w-0 bg-panel p-4 sm:p-5">
               <p className="text-xs text-muted">{t}</p>
-              <p className="mt-2 font-display text-2xl text-cyan">{v}</p>
+              <p className="mt-2 break-words font-display text-xl text-cyan sm:text-2xl">{v}</p>
             </div>
           ))}
         </section>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-10 grid min-w-0 gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
           <h2 className="font-display text-2xl">Todas as vendas</h2>
-          <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar código, destino ou cliente" className="w-72 rounded-xl border border-line bg-panel px-4 py-2 text-sm outline-none focus:border-amber" />
+          <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar código, destino ou cliente" aria-label="Buscar vendas" className="min-h-11 w-full min-w-0 rounded-xl sm:w-72 border border-line bg-panel px-4 py-2 text-sm outline-none focus:border-amber" />
         </div>
         {filtradas.length === 0 ? (
           <p className="mt-4 text-sm text-muted">Nenhuma venda encontrada.</p>
         ) : (
           <ul className="mt-4 space-y-3">
             {filtradas.map((c) => (
-              <li key={c.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-panel p-4 text-sm">
+              <li key={c.id} className="grid min-w-0 gap-3 rounded-xl sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center border border-line bg-panel p-4 text-sm">
                 <div>
-                  <p className="font-semibold">{c.destino || "Viagem livre"} <span className="text-cyan">· {c.codigo}</span></p>
+                  <p className="break-words font-semibold">{c.destino || "Viagem livre"} <span className="text-cyan">· {c.codigo}</span></p>
                   <p className="text-muted">
                     {nomes[c.user_id] ?? "Cliente"} · {formatarAno(c.ano)} · {c.passageiros} passageiro(s) · {c.classe === "premium" ? "Premium" : "Econômica"} · {new Date(c.criado_em).toLocaleDateString("pt-BR")}
                   </p>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex shrink-0 items-center justify-between gap-4">
                   <p className="text-amber">{c.total.toLocaleString("pt-BR")} TC</p>
-                  <button onClick={() => cancelar(c)} className="rounded-full border border-rose/50 px-3 py-1 text-xs text-rose hover:bg-rose hover:text-ink">Cancelar</button>
+                  <button onClick={() => cancelar(c)} className="rounded-full border min-h-11 border-rose/50 px-3 py-2 text-xs text-rose hover:bg-rose hover:text-ink">Cancelar</button>
                 </div>
               </li>
             ))}

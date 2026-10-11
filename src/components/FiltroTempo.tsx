@@ -46,11 +46,11 @@ export function FiltroTempo() {
   const preco = calcularPreco(ano);
 
   return (
-    <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-2.5 lg:px-8">
+    <div className="mx-auto grid max-w-6xl min-w-0 gap-2 px-4 py-3 sm:px-6 lg:grid-cols-[auto_minmax(160px,1fr)_auto] lg:items-center lg:gap-4 lg:px-8">
       <label htmlFor="filtro-tempo" className="text-[10px] uppercase tracking-[0.22em] text-muted">
         Escolha o momento
       </label>
-      <div className="relative flex min-w-[200px] flex-1 items-center">
+      <div className="relative flex min-w-0 items-center">
         <div className="pointer-events-none absolute inset-x-0 h-px bg-gradient-to-r from-mint via-amber to-cyan opacity-80" />
         <input
           id="filtro-tempo"
@@ -64,13 +64,13 @@ export function FiltroTempo() {
           aria-valuetext={formatarAno(ano)}
         />
       </div>
-      <div className="flex items-center gap-3 text-xs tabular-nums">
-        <span className="font-semibold text-white">{formatarAno(ano)}</span>
-        <span className="text-muted">{descreverDistancia(ano)}</span>
-        <span className="rounded-full bg-cyan/15 px-2.5 py-1 font-semibold text-cyan">
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 text-xs tabular-nums sm:flex sm:flex-wrap sm:gap-3">
+        <span className="min-w-0 font-semibold text-foreground">{formatarAno(ano)}</span>
+        <span className="col-start-1 row-start-2 min-w-0 text-muted">{descreverDistancia(ano)}</span>
+        <span className="col-start-2 row-start-1 rounded-full bg-cyan/15 px-2.5 py-1 font-semibold text-cyan">
           {preco === 0 ? "Grátis" : `${preco.toLocaleString("pt-BR")} TC`}
         </span>
-        <Link to="/compra" search={{ ano, destino: "" }} className="rounded-full bg-amber px-3 py-1 font-semibold text-ink">
+        <Link to="/compra" search={{ ano, destino: "" }} className="col-span-2 inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-amber px-3 py-2 sm:ml-auto font-semibold text-ink">
           Comprar passagem
         </Link>
       </div>

@@ -45,9 +45,9 @@ function Login() {
   const campo = "mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2.5 outline-none focus:border-cyan";
 
   return (
-    <div className="relative grid min-h-screen place-items-center overflow-hidden bg-ink px-6 py-10 font-sans text-white">
+    <div className="relative grid min-h-screen place-items-center overflow-hidden bg-ink px-4 py-6 sm:px-6 sm:py-10 font-sans text-white">
       <div className="pointer-events-none absolute -top-24 left-1/2 h-[480px] w-[760px] -translate-x-1/2 rounded-full bg-cyan/10 blur-[120px]" />
-      <div className="relative w-full max-w-sm rounded-2xl border border-line bg-panel p-8">
+      <div className="relative w-full max-w-sm rounded-2xl border border-line bg-panel p-5 sm:p-8">
         <Link to="/" className="mb-6 flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-[10px] bg-gradient-to-br from-cyan to-amber font-display text-lg font-semibold text-ink">C</span>
           <span className="text-sm font-semibold">ChronoTripBrazil</span>

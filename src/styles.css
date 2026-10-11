@@ -171,6 +171,68 @@
   }
 }
 
+/* Botões-pílula do menu do topo */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in oklab, var(--color-panel2) 75%, transparent);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 0.25s, border-color 0.25s, background 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.nav-btn .nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--color-cyan) 45%, transparent);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+.nav-btn:hover {
+  color: var(--color-readable);
+  border-color: color-mix(in oklab, var(--color-cyan) 55%, transparent);
+  background: color-mix(in oklab, var(--color-cyan) 10%, var(--color-panel2));
+  box-shadow: 0 0 20px -6px color-mix(in oklab, var(--color-cyan) 70%, transparent);
+  transform: translateY(-1px);
+}
+.nav-btn:hover .nav-dot {
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px 1px color-mix(in oklab, var(--color-cyan) 80%, transparent);
+}
+.nav-btn:active {
+  transform: translateY(0);
+}
+
+/* Botão "Entrar" com contorno neon */
+.entrar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.4rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--color-cyan) 45%, transparent);
+  color: var(--color-cyan);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--color-cyan) 8%, transparent);
+  transition: background 0.25s, box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+}
+.entrar-btn:hover {
+  background: color-mix(in oklab, var(--color-cyan) 18%, transparent);
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 22px -4px color-mix(in oklab, var(--color-cyan) 75%, transparent);
+  transform: translateY(-1px);
+}
+
 /* Controle deslizante do filtro de tempo */
 .seletor-tempo { appearance: none; background: transparent; height: 18px; cursor: pointer; }
 .seletor-tempo::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 9999px; background: var(--color-cyan); box-shadow: 0 0 10px 2px rgba(76,201,240,.6); }

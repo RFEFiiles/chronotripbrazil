@@ -164,11 +164,11 @@ function Index() {
               · Agência de Viagem Temporal
             </span>
           </Link>
-          <nav className="order-3 col-span-2 grid min-w-0 grid-cols-2 gap-x-4 gap-y-1 py-1 text-sm text-muted sm:flex sm:gap-6 md:order-none md:gap-8">
-            <a href="#eras" className="transition-colors hover:text-white">Eras</a>
-            <a href="#catalog" className="transition-colors hover:text-white">Expedições</a>
-            <a href="#detail" className="transition-colors hover:text-white">Passaporte</a>
-            <a href="#safety" className="transition-colors hover:text-white">Segurança</a>
+          <nav className="order-3 col-span-2 grid min-w-0 grid-cols-2 gap-2 py-1 sm:flex sm:gap-2.5 md:order-none">
+            <a href="#eras" className="nav-btn"><span className="nav-dot" aria-hidden="true" />Eras</a>
+            <a href="#catalog" className="nav-btn"><span className="nav-dot" aria-hidden="true" />Expedições</a>
+            <a href="#detail" className="nav-btn"><span className="nav-dot" aria-hidden="true" />Passaporte</a>
+            <a href="#safety" className="nav-btn"><span className="nav-dot" aria-hidden="true" />Segurança</a>
           </nav>
           <div className="flex min-w-0 items-center justify-end gap-2 sm:gap-3">
           {usuario ? (
@@ -180,7 +180,7 @@ function Index() {
               <Button variant="ghost" onClick={sair} className="min-h-11 px-2 text-muted hover:bg-panel2 hover:text-cyan">Sair</Button>
             </span>
           ) : (
-            <Link to="/login" className="inline-flex min-h-11 shrink-0 items-center text-sm text-muted transition-colors hover:text-white">Entrar</Link>
+            <Link to="/login" className="entrar-btn shrink-0 text-sm">Entrar <span aria-hidden="true">→</span></Link>
           )}
           <Link
             to="/compra"

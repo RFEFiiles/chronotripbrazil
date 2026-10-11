@@ -39,22 +39,21 @@ function Compra() {
   const total = Math.round(unitario * passageiros);
 
   return (
-    <div className="min-h-screen bg-ink px-6 py-10 font-sans text-white">
+    <div className="min-h-screen bg-ink px-4 py-6 sm:px-6 sm:py-10 font-sans text-white">
       <div className="mx-auto max-w-3xl">
-        <div className="mb-8 flex items-center justify-between">
-          <Link to="/" className="text-sm text-muted hover:text-white">← Voltar</Link>
+        <div className="mb-6 flex min-w-0 justify-end">
           {usuario && (
-            <span className="text-sm text-muted">
+            <span className="min-w-0 break-words text-sm text-muted">
               Olá, <span className="text-white">{usuario.nome}</span> ·{" "}
               <button onClick={sair} className="text-cyan">sair</button>
             </span>
           )}
         </div>
         <p className="text-[11px] uppercase tracking-[0.22em] text-cyan">Compra de passagem</p>
-        <h1 className="mt-2 font-display text-4xl font-medium">{destino || "Viagem personalizada"}</h1>
+        <h1 className="mt-2 break-words font-display text-3xl sm:text-4xl font-medium">{destino || "Viagem personalizada"}</h1>
 
         {codigo ? (
-          <div className="mt-8 rounded-2xl border border-cyan/40 bg-panel p-8 text-center">
+          <div className="mt-8 rounded-2xl border border-cyan/40 bg-panel p-5 text-center sm:p-8">
             <p className="text-5xl">🎫</p>
             <h2 className="mt-4 font-display text-3xl">Passagem confirmada!</h2>
             <p className="mt-2 text-muted">Destino: {formatarAno(ano)} · {passageiros} passageiro(s)</p>
@@ -63,7 +62,7 @@ function Compra() {
             <Link to="/" className="mt-6 inline-block rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink">Voltar ao início</Link>
           </div>
         ) : (
-          <div className="mt-8 grid gap-6 rounded-2xl border border-line bg-panel p-6">
+          <div className="mt-8 grid gap-6 rounded-2xl border border-line bg-panel p-4 sm:p-6">
             <label className="block text-sm">
               <span className="text-muted">Ano de destino (negativo = antes de Cristo)</span>
               <input type="number" value={ano} onChange={(e) => setAno(Number(e.target.value) || 0)}
@@ -78,19 +77,19 @@ function Compra() {
             </label>
             <div className="text-sm">
               <span className="text-muted">Classe</span>
-              <div className="mt-2 flex gap-3">
+              <div className="mt-2 grid grid-cols-2 gap-2 sm:gap-3">
                 {(["eco", "premium"] as const).map((c) => (
                   <button key={c} onClick={() => setClasse(c)}
-                    className={`flex-1 rounded-xl border px-4 py-3 ${classe === c ? "border-cyan bg-cyan/10 text-cyan" : "border-line"}`}>
+                    className={`min-w-0 rounded-xl border px-2 py-3 sm:px-4 ${classe === c ? "border-cyan bg-cyan/10 text-cyan" : "border-line"}`}>
                     {c === "eco" ? "Econômica" : "Premium (+60%)"}
                   </button>
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between border-t border-dashed border-line pt-5">
+            <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center border-t border-dashed border-line pt-5">
               <p className="text-sm text-muted">Total <span className="ml-1 text-3xl font-semibold text-cyan">{total.toLocaleString("pt-BR")} TC</span></p>
               {usuario ? (
-                <div className="text-right">
+                <div className="min-w-0 sm:text-right">
                   <button
                     disabled={enviando}
                     onClick={async () => {
@@ -99,13 +98,13 @@ function Compra() {
                       setEnviando(false);
                       if (r.codigo) setCodigo(r.codigo); else setErro(r.erro ?? "Erro");
                     }}
-                    className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink disabled:opacity-60">
+                    className="w-full rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink disabled:opacity-60">
                     {enviando ? "Processando..." : "Confirmar compra"}
                   </button>
                   {erro && <p className="mt-2 text-xs text-rose">{erro}</p>}
                 </div>
               ) : (
-                <Link to="/login" className="rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink">
+                <Link to="/login" className="inline-flex min-h-11 items-center justify-center rounded-full bg-amber px-6 py-3 text-sm font-semibold text-ink">
                   Entre para comprar
                 </Link>
               )}

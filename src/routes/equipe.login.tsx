@@ -40,9 +40,9 @@ function LoginEquipe() {
   const campo = "mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2.5 outline-none focus:border-amber";
 
   return (
-    <div className="relative grid min-h-screen place-items-center overflow-hidden bg-ink px-6 py-10 text-white">
+    <div className="relative grid min-h-[calc(100dvh-60px)] place-items-center overflow-hidden bg-ink px-4 py-6 sm:px-6 sm:py-10 text-white">
       <div className="pointer-events-none absolute -top-24 left-1/2 h-[480px] w-[760px] -translate-x-1/2 rounded-full bg-amber/10 blur-[120px]" />
-      <div className="relative w-full max-w-sm rounded-2xl border border-amber/40 bg-panel p-8">
+      <div className="relative w-full max-w-sm rounded-2xl border border-amber/40 bg-panel p-5 sm:p-8">
         <span className="rounded-full bg-amber/15 px-3 py-1 text-xs font-semibold text-amber">ÁREA DA EQUIPE</span>
         <h1 className="mt-4 font-display text-3xl">Acesso de funcionário</h1>
         <p className="mt-2 text-sm text-muted">Entre com sua conta da empresa.</p>

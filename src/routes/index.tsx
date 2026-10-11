@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "../components/ui/button";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FiltroTempo } from "../components/FiltroTempo";
 import { Assistente } from "../components/Assistente";
@@ -152,39 +153,39 @@ function Index() {
   return (
     <div className="min-h-screen bg-ink font-sans text-white antialiased selection:bg-cyan/30">
       {/* Nav + linha do tempo persistente */}
-      <header className="sticky top-0 z-30 border-b border-line/60 bg-ink/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-          <a href="#" className="flex items-center gap-2.5">
-            <span className="grid size-8 place-items-center rounded-[10px] bg-gradient-to-br from-cyan to-amber text-ink">
+      <header className="relative top-0 z-30 sm:sticky border-b border-line/60 bg-ink/85 backdrop-blur">
+        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:flex sm:flex-wrap sm:justify-between sm:px-6 sm:py-4 lg:px-8">
+          <Link to="/" className="flex min-w-0 items-center gap-2.5">
+            <span className="grid size-8 shrink-0 place-items-center rounded-[10px] bg-gradient-to-br from-cyan to-amber text-ink">
               <span className="font-display text-lg font-semibold">V</span>
             </span>
-            <span className="text-sm font-semibold tracking-wide">ChronoTripBrazil</span>
-            <span className="hidden text-[11px] uppercase tracking-[0.2em] text-muted sm:inline">
+            <span className="truncate text-sm font-semibold">ChronoTripBrazil</span>
+            <span className="hidden text-[11px] uppercase tracking-[0.2em] text-muted xl:inline">
               · Agência de Viagem Temporal
             </span>
-          </a>
-          <nav className="hidden items-center gap-8 text-sm text-muted md:flex">
+          </Link>
+          <nav className="order-3 col-span-2 grid min-w-0 grid-cols-2 gap-x-4 gap-y-1 py-1 text-sm text-muted sm:flex sm:gap-6 md:order-none md:gap-8">
             <a href="#eras" className="transition-colors hover:text-white">Eras</a>
             <a href="#catalog" className="transition-colors hover:text-white">Expedições</a>
             <a href="#detail" className="transition-colors hover:text-white">Passaporte</a>
             <a href="#safety" className="transition-colors hover:text-white">Segurança</a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center justify-end gap-2 sm:gap-3">
           {usuario ? (
-            <span className="flex items-center gap-3 text-sm text-muted">
-              <Link to="/perfil" className="flex items-center gap-2 transition-colors hover:text-white">
+            <span className="flex min-w-0 items-center gap-2 text-sm text-muted">
+              <Link to="/perfil" className="flex min-w-0 items-center gap-2 transition-colors hover:text-white">
                 {usuario.foto ? <img src={usuario.foto} alt="" className="h-7 w-7 rounded-full object-cover" /> : null}
-                Olá, {usuario.nome}
+                <span className="max-w-20 truncate sm:max-w-32">{usuario.nome}</span>
               </Link>
-              <button onClick={sair} className="transition-colors hover:text-white">Sair</button>
+              <Button variant="ghost" onClick={sair} className="min-h-11 px-2 text-muted hover:bg-panel2 hover:text-cyan">Sair</Button>
             </span>
           ) : (
-            <Link to="/login" className="text-sm text-muted transition-colors hover:text-white">Entrar</Link>
+            <Link to="/login" className="inline-flex min-h-11 shrink-0 items-center text-sm text-muted transition-colors hover:text-white">Entrar</Link>
           )}
           <Link
             to="/compra"
             search={{ ano: 3000, destino: "" }}
-            className="rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink ring-1 ring-cyan/60"
+            className="hidden shrink-0 rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink ring-1 ring-cyan/60 sm:inline-flex"
           >
             Reservar agora
           </Link>
@@ -201,20 +202,20 @@ function Index() {
         <div className="pointer-events-none absolute -top-10 right-10 h-[380px] w-[380px] rounded-full bg-amber/10 blur-[110px]" />
         {/* Terra 3D interativa atrás do texto */}
         <div
-          className="absolute inset-x-0 top-0 h-[540px] w-full cursor-grab opacity-80 active:cursor-grabbing lg:h-[620px] [mask-image:radial-gradient(ellipse_55%_60%_at_50%_45%,black_40%,transparent_78%)]"
+          className="absolute inset-x-0 top-0 h-[460px] w-full cursor-grab sm:h-[540px] opacity-80 active:cursor-grabbing lg:h-[620px] [mask-image:radial-gradient(ellipse_55%_60%_at_50%_45%,black_40%,transparent_78%)]"
           title="Arraste para girar a Terra"
         >
           <Terra3D aoArrastar={setArrastandoTerra} />
         </div>
         <div
-          className={`pointer-events-none relative mx-auto max-w-6xl px-6 pt-20 pb-16 transition-opacity duration-500 lg:px-8 lg:pt-28 ${
+          className={`pointer-events-none relative mx-auto max-w-6xl px-4 pt-12 pb-12 sm:px-6 sm:pt-20 sm:pb-16 transition-opacity duration-500 lg:px-8 lg:pt-28 ${
             arrastandoTerra ? "opacity-30" : "opacity-100"
           }`}
         >
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-panel px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-muted">
             <span className="size-1.5 rounded-full bg-cyan" /> Temporada 2024 · 09 rotas ativas
           </p>
-          <h1 className="max-w-[24ch] font-display text-6xl font-medium leading-[0.95] text-balance sm:text-7xl lg:text-8xl">
+          <h1 className="max-w-[24ch] font-display text-4xl font-medium leading-[0.95] text-balance sm:text-7xl lg:text-8xl">
             <span className="block bg-gradient-to-br from-cyan via-amber to-rose bg-clip-text text-transparent">
               Viaje além do tempo
             </span>
@@ -240,7 +241,7 @@ function Index() {
         </div>
 
         {/* Faixa de eras */}
-        <div id="eras" className="relative mx-auto max-w-6xl px-6 pb-4 lg:px-8">
+        <div id="eras" className="relative mx-auto max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-line bg-panel/70 p-5 lg:p-6">
             <div className="mb-5 flex items-center justify-between">
               <span className="text-[11px] uppercase tracking-[0.22em] text-muted">Escolha uma era</span>
@@ -272,14 +273,14 @@ function Index() {
 
       {/* Catálogo */}
       <section id="catalog" className="border-t border-line/50">
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
-          <div className="mb-10 flex items-end justify-between gap-6">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+          <div className="mb-8 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
             <h2 className="max-w-[40ch] font-display text-3xl font-medium text-balance lg:text-4xl">
               Expedições por era
             </h2>
             <span className="hidden text-sm text-muted sm:block">06 rotas · 6 eras</span>
           </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {expedicoes.map((exp) => (
               <Link
                 to="/compra"
@@ -321,7 +322,7 @@ function Index() {
 
       {/* Passaporte temporal */}
       <section id="detail" className="border-t border-line/50 bg-panel/40">
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-cyan">
             Passaporte temporal · CTB-0300
           </p>
@@ -337,7 +338,7 @@ function Index() {
               />
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-line bg-panel2 p-6 ring-1 ring-black/5">
-              <div className="flex items-start justify-between">
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.2em] text-muted">Embarque</p>
                   <p className="mt-1 font-display text-2xl font-medium">Nova Aurora</p>
@@ -363,19 +364,19 @@ function Index() {
                 </div>
               </div>
               <div className="my-5 border-t border-dashed border-line" />
-              <div className="flex items-end justify-between">
-                <div className="flex gap-3" aria-hidden="true">
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3">
+                <div className="flex gap-1.5 sm:gap-3" aria-hidden="true">
                   {barrasCodigo.map((largura, i) => (
                     <div key={i} className={`h-12 bg-white/70 ${largura}`} />
                   ))}
                 </div>
                 <p className="text-[10px] text-muted">CTB-0300 · OZ-2024</p>
               </div>
-              <div className="mt-6 flex items-center justify-between gap-4">
+              <div className="mt-6 grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                 <p className="text-sm text-muted">
                   Total <span className="ml-1 text-2xl font-semibold text-cyan">8.900 TC</span>
                 </p>
-                <Link to="/compra" search={{ ano: 3000, destino: "Nova Aurora" }} className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink ring-1 ring-cyan/60">
+                <Link to="/compra" search={{ ano: 3000, destino: "Nova Aurora" }} className="inline-flex min-h-11 items-center justify-center rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink ring-1 ring-cyan/60">
                   Reservar viagem
                 </Link>
               </div>
@@ -386,7 +387,7 @@ function Index() {
 
       {/* Segurança / paradoxo */}
       <section id="safety" className="border-t border-line/50">
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-amber">
@@ -420,7 +421,7 @@ function Index() {
 
       <footer className="border-t border-line/50">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <p className="flex items-center gap-2">
+          <p className="flex min-w-0 items-center gap-2">
             <span className="grid size-6 place-items-center rounded-lg bg-gradient-to-br from-cyan to-amber text-ink">
               <span className="font-display text-sm font-semibold">V</span>
             </span>

@@ -7,6 +7,7 @@
 /* Paleta da direção "Futurista escuro" — ChronoTripBrazil, agência de viagem temporal */
 @theme {
   --color-ink: #0a0d14;
+  --color-readable: #f5f7fa;
   --color-panel: #11151f;
   --color-panel2: #161b28;
   --color-line: #23293a;
@@ -90,8 +91,8 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.16 0.02 265);
+  --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -174,3 +175,18 @@
 .seletor-tempo { appearance: none; background: transparent; height: 18px; cursor: pointer; }
 .seletor-tempo::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 9999px; background: var(--color-cyan); box-shadow: 0 0 10px 2px rgba(76,201,240,.6); }
 .seletor-tempo::-moz-range-thumb { width: 16px; height: 16px; border: 0; border-radius: 9999px; background: var(--color-cyan); box-shadow: 0 0 10px 2px rgba(76,201,240,.6); }
+
+@media (max-width: 639px) {
+  input:not([type="range"]):not([type="file"]), select, textarea {
+    font-size: 16px;
+    min-width: 0;
+  }
+  button { min-height: 44px; }
+  .seletor-tempo { height: 32px; touch-action: pan-y; }
+  .seletor-tempo::-webkit-slider-thumb { width: 24px; height: 24px; }
+  .seletor-tempo::-moz-range-thumb { width: 24px; height: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow { animation: none; }
+}

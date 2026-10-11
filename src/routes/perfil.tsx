@@ -66,7 +66,9 @@ function Perfil() {
       const t = 256;
       c.width = t; c.height = t;
       const lado = Math.min(img.width, img.height);
-      c.getContext("2d")!.drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, t, t);
+      const contexto = c.getContext("2d");
+      if (!contexto) { URL.revokeObjectURL(img.src); return; }
+      contexto.drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, t, t);
       setFoto(c.toDataURL("image/jpeg", 0.85));
       URL.revokeObjectURL(img.src);
     };
@@ -83,15 +85,14 @@ function Perfil() {
   };
 
   return (
-    <main className="min-h-screen bg-ink px-6 py-12 text-white">
+    <main className="min-h-screen bg-ink px-4 py-6 sm:px-6 sm:py-12 text-white">
       <div className="mx-auto max-w-lg">
-        <Link to="/" className="text-sm text-muted hover:text-white">← Voltar</Link>
         <h1 className="mt-6 font-display text-4xl">Meu perfil</h1>
-        <p className="mt-2 text-muted">{usuario.email}</p>
+        <p className="mt-2 break-all text-muted">{usuario.email}</p>
 
-        <form onSubmit={salvar} className="mt-8 space-y-6 rounded-2xl border border-line bg-panel p-6">
-          <div className="flex items-center gap-5">
-            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-line bg-panel2 text-3xl text-cyan">
+        <form onSubmit={salvar} className="mt-8 space-y-6 rounded-2xl border border-line bg-panel p-4 sm:p-6">
+          <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4">
+            <div className="flex h-20 w-20 shrink-0 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-full border border-line bg-panel2 text-3xl text-cyan">
               {foto ? <img src={foto} alt="Foto de perfil" className="h-full w-full object-cover" /> : nome.charAt(0).toUpperCase()}
             </div>
             <div className="flex flex-col gap-2">
@@ -126,12 +127,12 @@ function Perfil() {
         ) : (
           <ul className="mt-4 space-y-3">
             {compras.map((c) => (
-              <li key={c.codigo} className="flex items-center justify-between rounded-xl border border-line bg-panel p-4 text-sm">
+              <li key={c.codigo} className="grid min-w-0 gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center rounded-xl border border-line bg-panel p-4 text-sm">
                 <div>
-                  <p className="font-semibold">{c.destino}</p>
+                  <p className="break-words font-semibold">{c.destino}</p>
                   <p className="text-muted">{formatarAno(c.ano)} · {c.passageiros} passageiro(s) · {c.classe === "premium" ? "Premium" : "Econômica"}</p>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <p className="text-cyan">{c.codigo}</p>
                   <p className="text-muted">{c.total.toLocaleString("pt-BR")} TC</p>
                 </div>

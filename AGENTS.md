@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Render shared back navigation in the root layout for all secondary pages, with a home fallback for direct visits, so loading and access-restricted states retain navigation.
+- Use mobile-first grids for mixed text/actions and independently scrollable chat messages to prevent horizontal overflow on narrow screens.

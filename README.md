@@ -1,25 +1,27 @@
 # ChronoTripBrazil
+### Viaje além do tempo.
 
-Opa, bom dia, estou fazendo um projeto de programação que consiste em eu criar alguma coisa que eu queria que existisse no mundo, e essa aqui é a minha agência de viajem no tempo!
-This project was built with [Lovable](https://lovable.dev).
+O ChronoTripBrazil é uma aplicação web que simula uma agência futurista de viagens temporais, permitindo aos usuários explorar diferentes épocas da história e destinos imaginários do futuro.
 
-**Live app**: https://chronotripbrazil.lovable.app
+Desenvolvido com auxílio do Lovable, o projeto combina criatividade, tecnologia e inteligência artificial para transformar o conceito fictício de viagem no tempo em uma experiência digital interativa.
 
-## Build with Lovable
+### Funcionalidades
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/9417b686-a546-40f1-a799-7808bc0a4b82).
+- Exploração de seis expedições temporais, desde a era dos dinossauros até o ano 3000.
+- Globo terrestre 3D interativo.
+- Seletor temporal para escolher anos do passado ou futuro.
+- Cálculo dinâmico de preços conforme a distância temporal.
+- Simulação de compra de passagens com classes Econômica e Premium.
+- Cadastro, autenticação e personalização de perfis.
+- Histórico de viagens e códigos individuais de passagem.
+- Assistente virtual Lia, integrada à inteligência artificial Gemini.
+- Painel administrativo para funcionários, com gerenciamento de vendas, clientes e passagens.
+- Interface responsiva com identidade visual futurista.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+### Tecnologias utilizadas
 
-## Development
+React, TypeScript, Tailwind CSS, TanStack, Three.js, Lovable Cloud, PostgreSQL, Supabase e Gemini.
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### Objetivo
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+Explorar o desenvolvimento de uma aplicação web completa, integrando frontend, backend, banco de dados relacional e inteligência artificial em uma proposta criativa que une história, ficção científica e turismo temporal.
